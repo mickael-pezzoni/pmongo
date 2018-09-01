@@ -2,40 +2,25 @@
 
 import datetime as date
 from random import randint
-from pymongo import MongoClient
-import pprint
+from Mongo import Mongo
 import argparse
 
 
-def printCollection(collection):
-        for elt in collection.find():
-            pprint.pprint(elt)
-
 HOST = ''
 PORT = ***REMOVED***
-client = MongoClient(HOST,PORT)
 
 parser = argparse.ArgumentParser(description="Gestion base mongodb")
-parser.add_argument("-D",'--db', help="Base de donnée", default="apiwatchTest", metavar='Base')
-parser.add_argument("-p", help="Affiche la collections indiquée",metavar="COLLECTION")
-parser.add_argument("-c","--collection", action="store_true", help="Affiche les collections de la base")
-parser.add_argument("--dbs", action="store_true", help="Affiche les bases")
+parser.add_argument("-D",'--db', help="Base de donnée", default="apiwatchTest", metavar='Base', dest="selectBase")
+parser.add_argument("-c","--collection", action="store_true",help="Affiche les collections de la base", dest="collection" )
+parser.add_argument("-C",help="Affiche la collections indiquée", metavar="COLLECTION", dest="selectCollection")
+parser.add_argument("--dbs", action="store_true", help="Affiche les bases", dest="base")
 args = parser.parse_args()
 
+mongo = Mongo(HOST, PORT)
+print(args)
 
-if(args.dbs and args.db):
-	dbs = client. database_names()
-	for elt in dbs:
-		print("-> "+elt)
+if(args.base):
+    mongo.showDataBase()
 
-if(args.p):
-    if(args.db):
-        db = client[args.db]
-        collection = db[args.p]
-        printCollection(collection)
-
-if(args.collection and args.db):
-    db = client[args.db]
-    collectionList = db.collection_names()
-    for collect in collectionList:
-        print(collect)
+if(args.collection):
+    mongo.showListCollection(args.selectBase)
