@@ -1,2 +1,3 @@
 # pmongo
-Gerer base mongodb
+
+pmongo permet de réalisation des opérations de base sur une base mongodb
