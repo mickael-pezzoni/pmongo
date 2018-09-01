@@ -6,5 +6,4 @@
 * **pmongo -h :** affiche l'aide
 * **pmongo --dbs :** liste les bases
 * **pmongo -D :** sélectionne une base à combiner avec les options qui suivent
-* **pmongo -D base -c :** liste les collections de la base sélectionnée
-* **pmongo -D base -p collection :** affiche la collection sélectionnée
+* **pmongo -c :** affiche toute les collections d'une base
