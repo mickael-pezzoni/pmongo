@@ -10,10 +10,16 @@ HOST = ''
 PORT = 27017
 
 parser = argparse.ArgumentParser(description="Gestion base mongodb")
-parser.add_argument("-D",'--db', help="Base de donnée", default="apiwatchTest", metavar='Base', dest="selectBase")
+groupSelect = parser.add_argument_group('Sélecteur')
+
 parser.add_argument("-c","--collection", action="store_true",help="Affiche les collections de la base", dest="collection" )
-parser.add_argument("-C",help="Affiche la collections indiquée", metavar="COLLECTION", dest="selectCollection")
 parser.add_argument("--dbs", action="store_true", help="Affiche les bases", dest="base")
+
+
+groupSelect.add_argument("-D", required="true", help="Base de donnée",metavar='Base', dest="selectBase")
+groupSelect.add_argument("-C",help="Affiche la collections indiquée", metavar="COLLECTION", dest="selectCollection")
+
+
 args = parser.parse_args()
 
 mongo = Mongo(HOST, PORT)
@@ -24,3 +30,4 @@ if(args.base):
 
 if(args.collection):
     mongo.showListCollection(args.selectBase)
+
