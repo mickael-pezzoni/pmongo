@@ -31,3 +31,5 @@ if(args.base):
 if(args.collection):
     mongo.showListCollection(args.selectBase)
 
+if(args.selectCollection and args.selectBase):
+    mongo.printCollection(args.selectBase,args.selectCollection)
