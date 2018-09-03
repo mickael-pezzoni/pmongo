@@ -6,7 +6,7 @@ from Mongo import Mongo
 import argparse
 
 
-HOST = '51.68.71.91'
+HOST = ''
 PORT = 27017
 
 parser = argparse.ArgumentParser(description="Gestion base mongodb")
