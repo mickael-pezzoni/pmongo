@@ -16,7 +16,7 @@ parser.add_argument("-c","--collection", action="store_true",help="Affiche les c
 parser.add_argument("--dbs", action="store_true", help="Affiche les bases", dest="base")
 
 
-groupSelect.add_argument("-D", required="true", help="Base de donnée",metavar='Base', dest="selectBase")
+groupSelect.add_argument("-D", help="Base de donnée",metavar='Base', dest="selectBase")
 groupSelect.add_argument("-C",help="Affiche la collections indiquée", metavar="COLLECTION", dest="selectCollection")
 
 
