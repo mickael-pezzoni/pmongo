@@ -7,3 +7,4 @@
 * **pmongo --dbs :** liste les bases
 * **pmongo -D :** sélectionne une base à combiner avec les options qui suivent
 * **pmongo -c :** affiche toute les collections d'une base
+* **pmongo -D base -C collection :** affiche la collection sélectionnée
