@@ -6,7 +6,7 @@ from Mongo import Mongo
 import argparse
 
 
-HOST = '51.68.71.91'
+HOST = ''
 PORT = 27017
 
 parser = argparse.ArgumentParser(description="Gestion base mongodb")
@@ -14,10 +14,11 @@ groupSelect = parser.add_argument_group('Sélecteur')
 
 parser.add_argument("-c","--collection", action="store_true",help="Affiche les collections de la base", dest="collection" )
 parser.add_argument("--dbs", action="store_true", help="Affiche les bases", dest="base")
+parser.add_argument("-p",action="store_true", help="Affiche la collection ciblée", dest="printCollection")
 
 
 groupSelect.add_argument("-D", help="Base de donnée",metavar='Base', dest="selectBase")
-groupSelect.add_argument("-C",help="Affiche la collections indiquée", metavar="COLLECTION", dest="selectCollection")
+groupSelect.add_argument("-C",help="selectionne la collection", metavar="COLLECTION", dest="selectCollection")
 
 
 args = parser.parse_args()
@@ -31,5 +32,5 @@ if(args.base):
 if(args.collection):
     mongo.showListCollection(args.selectBase)
 
-if(args.selectCollection and args.selectBase):
+if(args.selectCollection and args.selectBase and args.printCollection):
     mongo.printCollection(args.selectBase,args.selectCollection)
