@@ -6,7 +6,7 @@ from Mongo import Mongo
 import argparse
 
 
-HOST = '***REMOVED***'
+HOST = ''
 PORT = ***REMOVED***
 
 parser = argparse.ArgumentParser(description="Gestion base mongodb")
