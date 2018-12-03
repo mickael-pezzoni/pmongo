@@ -6,8 +6,10 @@ from Mongo import Mongo
 import argparse
 
 
-HOST = "***REMOVED***"
-PORT = ***REMOVED***
+HOST = ""
+PORT = ""
+USER = ""
+PASSWORD = ""
 
 parser = argparse.ArgumentParser(description="Gestion base mongodb")
 groupSelect = parser.add_argument_group('Sélecteur')
@@ -27,7 +29,7 @@ groupWarning.add_argument("-C",help="selectionne la collection", metavar="COLLEC
 
 args = parser.parse_args()
 
-mongo = Mongo(HOST, PORT)
+mongo = Mongo(HOST, PORT, USER, PASSWORD)
 
 if(args.base):
     mongo.showDataBase()

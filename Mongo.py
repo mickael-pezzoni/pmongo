@@ -5,11 +5,13 @@ import pprint
 class Mongo:
     """Classe pour une connection à une base mongo """
 
-    def __init__(self, host, port):
+    def __init__(self, host, port, user, password):
         self.host = host
         self.port = port
-        self.client = MongoClient(self.host, self.port)
-
+        self.user = user
+        self.password = password
+        self.client = MongoClient('mongodb://'+user+':'+password+'@'+host+':'+port+'/')
+    
     def showDataBase(self):
         for db in self.client.database_names():
             print("*", db)
