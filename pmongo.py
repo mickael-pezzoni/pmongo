@@ -5,7 +5,7 @@ from random import randint
 from Mongo import Mongo
 import argparse
 
-
+# Auth
 HOST = ""
 PORT = ""
 USER = ""
