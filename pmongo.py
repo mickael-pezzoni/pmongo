@@ -6,10 +6,10 @@ from Mongo import Mongo
 import argparse
 
 # Auth
-HOST = ""
-PORT = ""
-USER = ""
-PASSWORD = ""
+HOST = "51.68.71.91"
+PORT = "43975"
+USER = "mickael"
+PASSWORD = "48296r"
 
 parser = argparse.ArgumentParser(description="Gestion base mongodb")
 groupSelect = parser.add_argument_group('Sélecteur')
@@ -38,7 +38,7 @@ if(args.collection):
     mongo.showListCollection(args.selectBase)
 
 if(args.selectCollection and args.selectBase and args.printCollection):
-    print(mongo.printCollection(args.selectBase,args.selectCollection))
+    mongo.printCollection(args.selectBase,args.selectCollection)
 
 if(args.selectBase and args.all and args.export):
     mongo.exportAllCollectioni(args.selectBase)

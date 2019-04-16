@@ -1,7 +1,7 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, errors
 import pprint
-
-
+import datetime
+from datetime import date
 class Mongo:
     """Classe pour une connection à une base mongo """
 
@@ -16,12 +16,34 @@ class Mongo:
         for db in self.client.database_names():
             print("*", db)
 
-    def printCollection(self, base, collectionName):
+    def printCollection(self, base, _collectionName):
         db = self.client[base]
         content = str()
-        collection = db[collectionName]
+        collection = db[_collectionName]
         for elt in collection.find():
             content += pprint.pformat(elt)+'\n'
+            """try:
+
+            except:
+                print('date invalid')"""
+            if type(elt['date']) != datetime.datetime:
+                print(elt['date'])
+                try:
+                    newDate = datetime.datetime.strptime(elt['date'], "%Y-%m-%d")
+                    print(collection.update_one({'_id': elt['_id']}, {'$set': newDate}, upsert=False))
+                except ValueError:
+                    print('err')
+                    """newDate = datetime.datetime.strptime(elt['date'], "%Y/%m/%d")
+                    print(collection.update_one({'_id': elt['_id']}, {'$set': newDate}, upsert=False))"""
+                except errors.WriteError:
+                    print('WRITE_ERROR')
+                    arrayDate = str(elt['date']).split('-')
+                    # print(arrayDate)
+                    # newDate = date(int(arrayDate[0]), int(arrayDate[1]), int(arrayDate[2]))
+                    newDate = datetime.datetime(int(arrayDate[0]), int(arrayDate[1]), int(arrayDate[2]))
+                    print(newDate)
+                    print(collection.update_one({'_id': elt['_id']}, {'$set': { 'date': newDate}}, upsert=False))
+
         return content
 
     def showListCollection(self, base):
